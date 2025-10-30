@@ -58,9 +58,9 @@ const SignIn = () => {
         {/* Connecting dots pattern */}
         <div className="absolute right-0 top-0 bottom-0 w-12 flex flex-col justify-center gap-8">
           {[...Array(12)].map((_, i) => (
-            <div key={i} className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-[hsl(var(--blue-accent))]" />
-              <div className="w-8 h-0.5 bg-muted-foreground/20" />
+            <div key={i} className="flex items-center gap-2 animate-fade-in opacity-0" style={{ animationDelay: `${i * 0.1}s` }}>
+              <div className="w-3 h-3 rounded-full bg-[hsl(var(--blue-accent))] animate-dot-pulse" style={{ animationDelay: `${i * 0.2}s` }} />
+              <div className="w-8 h-0.5 bg-muted-foreground/20 transition-all duration-300 hover:bg-[hsl(var(--blue-accent))] hover:w-12" />
             </div>
           ))}
         </div>
@@ -68,13 +68,13 @@ const SignIn = () => {
 
       {/* Right Panel - Sign In Form */}
       <div className="flex-1 flex items-center justify-center p-8 bg-background">
-        <div className="w-full max-w-md space-y-8 animate-fade-in">
-          <div className="text-center lg:text-left">
+        <div className="w-full max-w-md space-y-8">
+          <div className="text-center lg:text-left animate-fade-in opacity-0">
             <h1 className="text-4xl font-bold mb-2">Sign in your Account</h1>
           </div>
 
           <form onSubmit={handleSignIn} className="space-y-6">
-            <div className="space-y-2">
+            <div className="space-y-2 animate-slide-in opacity-0 delay-100">
               <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
@@ -83,11 +83,11 @@ const SignIn = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="h-12"
+                className="h-12 transition-all duration-300 focus:scale-[1.02]"
               />
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-2 animate-slide-in opacity-0 delay-200">
               <Label htmlFor="password">Password</Label>
               <Input
                 id="password"
@@ -96,21 +96,21 @@ const SignIn = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="h-12"
+                className="h-12 transition-all duration-300 focus:scale-[1.02]"
               />
               <div className="text-right">
-                <Link to="/forgot-password" className="text-sm text-muted-foreground hover:text-foreground">
+                <Link to="/forgot-password" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                   Forgot Password?
                 </Link>
               </div>
             </div>
 
-            <Button type="submit" className="w-full h-12 bg-primary hover:bg-primary/90" size="lg">
+            <Button type="submit" className="w-full h-12 bg-primary hover:bg-primary/90 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg animate-slide-in opacity-0 delay-300" size="lg">
               Sign in
             </Button>
           </form>
 
-          <div className="relative">
+          <div className="relative animate-fade-in opacity-0 delay-400">
             <div className="absolute inset-0 flex items-center">
               <span className="w-full border-t border-border" />
             </div>
@@ -123,7 +123,7 @@ const SignIn = () => {
             type="button"
             variant="outline"
             onClick={handleGoogleSignIn}
-            className="w-full h-12 gap-2"
+            className="w-full h-12 gap-2 transition-all duration-300 hover:scale-[1.02] hover:shadow-md animate-slide-in opacity-0 delay-500"
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24">
               <path
@@ -146,9 +146,9 @@ const SignIn = () => {
             Google
           </Button>
 
-          <p className="text-center text-sm text-muted-foreground">
+          <p className="text-center text-sm text-muted-foreground animate-fade-in opacity-0 delay-500">
             Don't have account ?{" "}
-            <Link to="/signup" className="text-[hsl(var(--red-accent))] hover:underline font-medium">
+            <Link to="/signup" className="text-[hsl(var(--red-accent))] hover:underline font-medium transition-colors">
               Sign up
             </Link>
           </p>

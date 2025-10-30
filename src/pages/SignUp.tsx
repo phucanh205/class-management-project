@@ -65,9 +65,9 @@ const SignUp = () => {
         {/* Connecting dots pattern */}
         <div className="absolute right-0 top-0 bottom-0 w-12 flex flex-col justify-center gap-8">
           {[...Array(12)].map((_, i) => (
-            <div key={i} className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-[hsl(var(--blue-accent))]" />
-              <div className="w-8 h-0.5 bg-muted-foreground/20" />
+            <div key={i} className="flex items-center gap-2 animate-fade-in opacity-0" style={{ animationDelay: `${i * 0.1}s` }}>
+              <div className="w-3 h-3 rounded-full bg-[hsl(var(--blue-accent))] animate-dot-pulse" style={{ animationDelay: `${i * 0.2}s` }} />
+              <div className="w-8 h-0.5 bg-muted-foreground/20 transition-all duration-300 hover:bg-[hsl(var(--blue-accent))] hover:w-12" />
             </div>
           ))}
         </div>
@@ -75,13 +75,13 @@ const SignUp = () => {
 
       {/* Right Panel - Sign Up Form */}
       <div className="flex-1 flex items-center justify-center p-8 bg-background">
-        <div className="w-full max-w-md space-y-8 animate-fade-in">
-          <div className="text-center lg:text-left">
+        <div className="w-full max-w-md space-y-8">
+          <div className="text-center lg:text-left animate-fade-in opacity-0">
             <h1 className="text-4xl font-bold mb-2">Create your Account</h1>
           </div>
 
           <form onSubmit={handleSignUp} className="space-y-6">
-            <div className="space-y-2">
+            <div className="space-y-2 animate-slide-in opacity-0 delay-100">
               <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
@@ -90,11 +90,11 @@ const SignUp = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="h-12"
+                className="h-12 transition-all duration-300 focus:scale-[1.02]"
               />
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-2 animate-slide-in opacity-0 delay-200">
               <Label htmlFor="password">Password</Label>
               <Input
                 id="password"
@@ -103,11 +103,11 @@ const SignUp = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="h-12"
+                className="h-12 transition-all duration-300 focus:scale-[1.02]"
               />
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-2 animate-slide-in opacity-0 delay-300">
               <Label htmlFor="confirmPassword">Confirm Password</Label>
               <Input
                 id="confirmPassword"
@@ -116,30 +116,31 @@ const SignUp = () => {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
-                className="h-12"
+                className="h-12 transition-all duration-300 focus:scale-[1.02]"
               />
             </div>
 
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 animate-slide-in opacity-0 delay-400">
               <Checkbox
                 id="terms"
                 checked={agreedToTerms}
                 onCheckedChange={(checked) => setAgreedToTerms(checked as boolean)}
+                className="transition-transform duration-200 hover:scale-110"
               />
               <label
                 htmlFor="terms"
                 className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               >
                 I agree with the{" "}
-                <span className="text-[hsl(var(--red-accent))]">Terms</span> &{" "}
-                <span className="text-[hsl(var(--red-accent))]">Conditions</span> and{" "}
-                <span className="text-[hsl(var(--red-accent))]">Private Policy</span>
+                <span className="text-[hsl(var(--red-accent))] transition-colors hover:underline cursor-pointer">Terms</span> &{" "}
+                <span className="text-[hsl(var(--red-accent))] transition-colors hover:underline cursor-pointer">Conditions</span> and{" "}
+                <span className="text-[hsl(var(--red-accent))] transition-colors hover:underline cursor-pointer">Private Policy</span>
               </label>
             </div>
 
             <Button
               type="submit"
-              className="w-full h-12 bg-primary hover:bg-primary/90"
+              className="w-full h-12 bg-primary hover:bg-primary/90 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg animate-slide-in opacity-0 delay-500"
               size="lg"
               disabled={!agreedToTerms}
             >
@@ -147,7 +148,7 @@ const SignUp = () => {
             </Button>
           </form>
 
-          <div className="relative">
+          <div className="relative animate-fade-in opacity-0 delay-500">
             <div className="absolute inset-0 flex items-center">
               <span className="w-full border-t border-border" />
             </div>
@@ -160,7 +161,7 @@ const SignUp = () => {
             type="button"
             variant="outline"
             onClick={handleGoogleSignUp}
-            className="w-full h-12 gap-2"
+            className="w-full h-12 gap-2 transition-all duration-300 hover:scale-[1.02] hover:shadow-md animate-slide-in opacity-0 delay-500"
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24">
               <path
@@ -183,9 +184,9 @@ const SignUp = () => {
             Google
           </Button>
 
-          <p className="text-center text-sm text-muted-foreground">
+          <p className="text-center text-sm text-muted-foreground animate-fade-in opacity-0 delay-500">
             Already have account ?{" "}
-            <Link to="/signin" className="text-[hsl(var(--red-accent))] hover:underline font-medium">
+            <Link to="/signin" className="text-[hsl(var(--red-accent))] hover:underline font-medium transition-colors">
               Sign in
             </Link>
           </p>
